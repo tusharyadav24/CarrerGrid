@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import postRoutes from "./routes/posts.routes.js"
 import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
@@ -7,7 +8,8 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-
+app.use(express.urlencoded({extended:true}));
+app.use(postRoutes)
 const start = async () => {
     try {
         await mongoose.connect("mongodb+srv://krishnasinghyadav24_db_user:NVu5kCU6iJPcXy4l@carrergrid.flopf06.mongodb.net/?retryWrites=true&w=majority");
